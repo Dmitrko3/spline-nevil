@@ -1,3 +1,8 @@
+from ast import List,Tuple
+
+Point = Tuple[float, float]
+
+
 def validate_input(points: List[Point], target_x: float) -> float | None:
     """
     Validates that the interpolation input is legal.
