@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bb5bcd1-9a5f-4a3e-8649-269c40dbfbaf" name="Changes" comment="א גמור&#10;וגם אני">
-      <change afterPath="$PROJECT_DIR$/richardson.py" afterDir="false" />
+    <list default="true" id="4bb5bcd1-9a5f-4a3e-8649-269c40dbfbaf" name="Changes" comment="הכל גמור&#10;וגם אני">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782804243071</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="א גמור&#10;וגם אני">
+      <option name="closed" value="true" />
+      <created>1782805294426</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1782805294426</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,6 +234,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
     <MESSAGE value="א גמור&#10;וגם אני" />
-    <option name="LAST_COMMIT_MESSAGE" value="א גמור&#10;וגם אני" />
+    <MESSAGE value="א-ג&#10;וגם אני" />
+    <option name="LAST_COMMIT_MESSAGE" value="א-ג&#10;וגם אני" />
   </component>
 </project>
