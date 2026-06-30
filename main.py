@@ -154,7 +154,7 @@ def main():
     # Evaluate both methods over the 200 points
     for x in test_points:
         y_nev = neville(points, x)
-        y_spl = spline(x_nodes, y_nodes, x)
+        y_spl = spline.cubic_spline(x_nodes, y_nodes, x)
 
         y_neville_list.append(y_nev)
         y_spline_list.append(y_spl)
