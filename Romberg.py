@@ -1,10 +1,6 @@
-import numpy as np
-from colors import bcolors
-
-
 def romberg_integration(func, a, b, n):
     """
-    Romberg Integration
+    Romberg Integration using standard Python lists.
 
     Parameters:
     func (function): The function to be integrated.
@@ -13,14 +9,15 @@ def romberg_integration(func, a, b, n):
     n (int): The number of iterations (higher value leads to better accuracy).
 
     Returns:
-    numpy.ndarray: The full Romberg integration table of shape (n, n).
+    list: A 2D nested list representing the Romberg integration table of size n x n.
     float: The approximate definite integral (the final diagonal entry).
     """
     h = b - a
-    R = np.zeros((n, n), dtype=float)
+    # Create an n x n table initialized with 0.0
+    R = [[0.0] * n for _ in range(n)]
 
     # Initial trapezoidal approximation
-    R[0, 0] = 0.5 * h * (func(a) + func(b))
+    R[0][0] = 0.5 * h * (func(a) + func(b))
 
     for i in range(1, n):
         h /= 2
@@ -31,20 +28,20 @@ def romberg_integration(func, a, b, n):
             sum_term += func(a + k * h)
 
         # Trapezoidal update
-        R[i, 0] = 0.5 * R[i - 1, 0] + h * sum_term
+        R[i][0] = 0.5 * R[i - 1][0] + h * sum_term
 
         # Richardson extrapolation columns
         for j in range(1, i + 1):
-            R[i, j] = R[i, j - 1] + (R[i, j - 1] - R[i - 1, j - 1]) / ((4 ** j) - 1)
+            R[i][j] = R[i][j - 1] + (R[i][j - 1] - R[i - 1][j - 1]) / ((4 ** j) - 1)
 
-    return R, R[n - 1, n - 1]
+    return R, R[n - 1][n - 1]
 
 
 def print_romberg_table(R):
     """
     Prints the Romberg integration table in a structured, lower-triangular format.
     """
-    n = R.shape[0]
+    n = len(R)
     print("\n" + "=" * 32 + " ROMBERG TABLE " + "=" * 32)
     
     # Headers correspond to the error bounds O(h^2), O(h^4), O(h^6), etc.
@@ -56,7 +53,7 @@ def print_romberg_table(R):
     for i in range(n):
         row_vals = []
         for j in range(i + 1):
-            row_vals.append(f"{R[i, j]:.10f}")
+            row_vals.append(f"{R[i][j]:.10f}")
         for j in range(i + 1, n):
             row_vals.append("")  # Leave upper triangular entries empty
         print(f"{i:3d} | " + " | ".join(f"{val:^14}" for val in row_vals))
@@ -69,7 +66,7 @@ def f(x):
 
 if __name__ == '__main__':
     a = 0
-    b = 3
+    b = 1
     n = 5
     
     # Retrieve both the full matrix and the final approximation
@@ -78,4 +75,4 @@ if __name__ == '__main__':
     print(f" Division into n={n} sections ")
     print_romberg_table(R_table)
     
-    print(bcolors.OKBLUE, f"\nApproximate integral in range [{a},{b}] is {integral:.12f}", bcolors.ENDC)
+    print(f"\nApproximate integral in range [{a},{b}] is {integral:.12f}")
