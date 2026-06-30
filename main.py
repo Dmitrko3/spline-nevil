@@ -7,7 +7,6 @@ Interpolation assignment:
 from typing import List, Tuple
 from neville import neville_interpolation as neville
 from spline import cubic_spline as spline
-
 import matplotlib.pyplot as plt
 import spline
 
@@ -228,5 +227,100 @@ def main():
     plt.show()
 
 
+# 1. Define the continuous function wrapper
+def f_continuous(x, points, x_nodes, y_nodes, method="neville"):
+    """
+    Evaluates the function at x using the chosen interpolation method.
+    """
+    if method == "neville":
+        return neville(points, x)
+    else:
+        return spline.cubic_spline(x_nodes, y_nodes, x)
+
+
+# 2. Bisection Method
+def bisection_method(func, a, b, tol=1e-8):
+    if func(a) * func(b) >= 0:
+        print(f"Bisection fails: No guaranteed root in [{a}, {b}]")
+        return None, 0
+
+    iterations = 0
+    c = a
+    while (b - a) / 2.0 > tol:
+        c = (a + b) / 2.0
+        if func(c) == 0.0:
+            break
+        elif func(c) * func(a) < 0:
+            b = c
+        else:
+            a = c
+        iterations += 1
+
+    return c, iterations
+
+
+# 3. Secant Method
+def secant_method(func, x0, x1, tol=1e-8, max_iter=100):
+    iterations = 0
+    for _ in range(max_iter):
+        f0 = func(x0)
+        f1 = func(x1)
+
+        if f1 - f0 == 0:
+            print("Secant fails: Division by zero")
+            break
+
+        x2 = x1 - f1 * (x1 - x0) / (f1 - f0)
+        iterations += 1
+
+        if abs(x2 - x1) < tol:
+            return x2, iterations
+
+        x0, x1 = x1, x2
+
+    return x2, iterations
+
+
+# 4. Stage B Runner
+def run_stage_b():
+    points = [
+        (0.0, 0.500), (0.3, 0.779), (0.7, -0.054), (1.0, -0.591),
+        (1.5, -0.368), (2.0, -0.715), (2.5, -0.056), (3.0, 0.976)
+    ]
+    x_nodes = [p[0] for p in points]
+    y_nodes = [p[1] for p in points]
+
+    # Use Neville for the root finding (you can swap to "spline" if you prefer)
+    target_func = lambda x: f_continuous(x, points, x_nodes, y_nodes, method="neville")
+
+    # The intervals based on sign changes in the table
+    intervals = [
+        {"name": "Root 1", "a": 0.3, "b": 0.7},
+        {"name": "Root 2", "a": 2.5, "b": 3.0}
+    ]
+
+    print("\n" + "=" * 70)
+    print(" STAGE B: Root Finding (Table B)")
+    print("=" * 70)
+    print(
+        f"{'Root':<8} | {'Bisection x':<15} | {'Secant x':<15} | {'Bis Iter':<8} | {'Sec Iter':<8} | {'Difference (Delta)'}")
+    print("-" * 70)
+
+    for interval in intervals:
+        a, b = interval["a"], interval["b"]
+
+        # Bisection requires the bracket [a, b]
+        root_bis, iter_bis = bisection_method(target_func, a, b, tol=1e-8)
+
+        # Secant requires two initial guesses, we use the bracket edges
+        root_sec, iter_sec = secant_method(target_func, a, b, tol=1e-8)
+
+        diff = abs(root_bis - root_sec)
+
+        print(
+            f"{interval['name']:<8} | {root_bis:<15.9f} | {root_sec:<15.9f} | {iter_bis:<8} | {iter_sec:<8} | {diff:.3e}")
+
+
 if __name__ == "__main__":
-    main()
+    run_stage_b()
+
