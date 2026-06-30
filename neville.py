@@ -1,4 +1,4 @@
-from ast import List,Tuple
+from typing import List,Tuple
 
 Point = Tuple[float, float]
 

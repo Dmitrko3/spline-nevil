@@ -5,8 +5,8 @@ Interpolation assignment:
 """
 
 from typing import List, Tuple
-import neville
-import spline
+from neville import neville_interpolation as neville
+from spline import cubic_spline as spline
 
 import matplotlib.pyplot as plt
 import spline
@@ -195,8 +195,8 @@ def main():
     print(f"{'x':<5} | {'Neville (Y)':<15} | {'Spline (Y)':<15} | {'Difference (Delta)':<15}")
     print("-" * 55)
     for tx in table_x_vals:
-        yn = neville(points, tx)
-        ys = spline(x_nodes, y_nodes, tx)
+        yn = neville.neville_interpolation(points, tx)
+        ys = spline.cubic_spline(x_nodes, y_nodes, tx)
         print(f"{tx:<5.1f} | {yn:<15.6f} | {ys:<15.6f} | {abs(yn - ys):<15.6f}")
     print("=" * 55)
 
