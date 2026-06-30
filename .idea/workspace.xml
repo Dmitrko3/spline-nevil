@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bb5bcd1-9a5f-4a3e-8649-269c40dbfbaf" name="Changes" comment="א גמור&#10;וגם אני">
-      <change afterPath="$PROJECT_DIR$/richardson.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase D,E.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +118,7 @@
       <updated>1782800977878</updated>
       <workItem from="1782800986793" duration="300000" />
       <workItem from="1782804444748" duration="55000" />
+      <workItem from="1782806021563" duration="637000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -227,5 +229,8 @@
     <MESSAGE value="1" />
     <MESSAGE value="א גמור&#10;וגם אני" />
     <option name="LAST_COMMIT_MESSAGE" value="א גמור&#10;וגם אני" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/spline_nevil$main.coverage" NAME="main Coverage Results" MODIFIED="1782806630674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
